@@ -1,6 +1,6 @@
 use clap::Parser;
 use plotters::prelude::*;
-use rustfft::{num_complex::Complex, FftPlanner};
+use rustfft::{FftPlanner, num_complex::Complex};
 use std::f64;
 
 #[derive(Debug, Parser)]
@@ -90,7 +90,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     root_area.fill(&WHITE)?;
 
     let mut chart = ChartBuilder::on(&root_area)
-        .caption("FFT Magnitude Spectrum (dB)", ("sans-serif", 30))
+        .caption("FFT Magnitude Spectrum (dB)", ("Arial", 30))
         .margin(10)
         .x_label_area_size(40)
         .y_label_area_size(40)
