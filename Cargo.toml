@@ -2,9 +2,15 @@
 name = "bin-to-wav"
 version = "0.1.0"
 edition = "2024"
+repository = "https://github.com/FraI3mega/bin-to-wav"
 
 [dependencies]
 clap = { version = "4.5.32", features = ["derive"] }
 hound = "3.5.1"
 plotters = "0.3.7"
 rustfft = "6.2.0"
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"

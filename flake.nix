@@ -58,6 +58,8 @@
           bacon
           cargo-nextest
           cargo-bloat
+          cargo-diet
+          cargo-dist
         ];
 
         env = {
