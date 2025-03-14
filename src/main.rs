@@ -1,10 +1,18 @@
-use hound;
+use clap::Parser;
 use plotters::prelude::*;
 use rustfft::{num_complex::Complex, FftPlanner};
 use std::f64;
 
+#[derive(Debug, Parser)]
+#[command(version, about, long_about = None)]
+struct Args {
+    filename: String,
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let filename = "Diler pod wezwaniem.wav";
+    let cli = Args::parse();
+
+    let filename = cli.filename;
     // Open the WAV file
     let mut reader = hound::WavReader::open(filename)?;
 
