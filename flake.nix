@@ -40,10 +40,19 @@
 
     devShells = forEachSupportedSystem ({pkgs}: {
       default = pkgs.mkShell {
+        strictDeps = true;
+        nativeBuildInputs = with pkgs; [
+          pkg-config
+          fontconfig
+          freetype
+        ];
+        buildInputs = with pkgs; [
+        ];
+
         packages = with pkgs; [
+          fontconfig
           rustToolchain
           openssl
-          pkg-config
           cargo-deny
           rust-analyzer
           bacon
@@ -54,6 +63,8 @@
         env = {
           # Required by rust-analyzer
           RUST_SRC_PATH = "${pkgs.rustToolchain}/lib/rustlib/src/rust/library";
+          PKG_CONFIG_PATH = "${pkgs.freetype.dev}/lib/pkgconfig:${pkgs.fontconfig.dev}/lib/pkgconfig";
+          LD_LIBRARY_PATH = "${pkgs.fontconfig.lib}/lib:${pkgs.freetype}/lib:$LD_LIBRARY_PATH";
         };
       };
     });
